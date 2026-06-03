@@ -1,4 +1,5 @@
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Radiation.Systems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Atmos;
 using Robust.Shared.Random;
@@ -7,6 +8,7 @@ using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
@@ -22,6 +24,8 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private SharedPointLightSystem _lightSystem = default!;
     [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private RadiationSystem _radiationSystem = default!;
 
     /// <summary>
     /// Changes the overall rate of events
@@ -73,7 +77,7 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
         if (radvalue > 0)
         {
             var radcomp = EnsureComp<RadiationSourceComponent>(uid);
-            radcomp.Intensity = radvalue;
+            _radiationSystem.SetIntensity(uid, radvalue);
         }
 
         if (component.Properties.NeutronRadioactivity > 0)
@@ -152,10 +156,10 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
 
         var properties = comp.Properties;
 
-        if (!_entityManager.TryGetComponent<DamageableComponent>(args.Target, out var damageable) || damageable.Damage.DamageDict == null)
+        if (!_entityManager.TryGetComponent<DamageableComponent>(args.Target, out var damageable))
             return;
 
-        var dict = damageable.Damage.DamageDict;
+        var dict = _damageable.GetAllDamage(args.Target).DamageDict;
 
         var dmgKey = "Radiation";
         var dmg = (properties.NeutronRadioactivity * 20) + (properties.Radioactivity * 10) + (properties.FissileIsotopes * 5);

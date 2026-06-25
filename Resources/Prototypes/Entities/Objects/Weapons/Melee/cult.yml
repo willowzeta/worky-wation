@@ -101,7 +101,9 @@
   id: CultDagger
   description: A sickening, crude bone blade. Tar-like ooze drips from the edge, poisoning your foes and protecting allies from your strikes. Useful as both a melee weapon and a throwing knife. Your veins pulse in anticipation - images of runes already flashing into your mind as you hold it.
   components:
-  - type: Sharp
+  - type: Tool
+    qualities:
+    - Slicing
   - type: Sprite
     sprite: Objects/Weapons/Melee/cult_dagger.rsi
     state: icon

@@ -87,7 +87,7 @@ namespace Content.Server.GameTicking.Rules;
 /// <summary>
 /// Where all the main stuff for Blood Cults happen
 /// </summary>
-public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
+public sealed partial class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 {
 	private const string JuggernautAccentPrototypeId = "juggernaut";
 

@@ -25,7 +25,7 @@ namespace Content.Server.BloodCult.EntitySystems;
 /// <summary>
 /// System that handles Blood Cult deconversion when a mindshield is implanted.
 /// </summary>
-public sealed class BloodCultMindShieldSystem : EntitySystem
+public sealed partial class BloodCultMindShieldSystem : EntitySystem
 {
     [Dependency] private IAdminLogManager _adminLogManager = default!;
     [Dependency] private RoleSystem _roleSystem = default!;

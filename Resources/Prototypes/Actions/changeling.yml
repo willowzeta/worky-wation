@@ -141,7 +141,7 @@
     effects:
     - !type:AddReagentToBloodstream
       reagent: NorepinephricAcid
-      quantity: 23
+      amount: 23
 
 - type: entity
   parent: BaseActionChangelingSting
@@ -160,7 +160,7 @@
     effects:
     - !type:AddReagentToBloodstream
       reagent: Fresium
-      quantity: 10 # About 20 seconds of slowdown.
+      amount: 10 # About 20 seconds of slowdown.
 
 - type: entity
   parent: BaseActionChangelingSting
@@ -179,7 +179,7 @@
     effects:
     - !type:AddReagentToBloodstream
       reagent: Lead
-      quantity: 5 # Exactly 100 poison damage over 3 minutes.
+      amount: 5 # Exactly 100 poison damage over 3 minutes.
 
 - type: entity
   parent: BaseActionChangelingSting
@@ -198,7 +198,7 @@
     effects:
     - !type:AddReagentToBloodstream
       reagent: SpaceDrugs
-      quantity: 10 # About 100s of being high
+      amount: 10 # About 100s of being high
     - !type:AddReagentToBloodstream
       reagent: Cryptobiolin
-      quantity: 10 # About 20s of your speech being scrambled
+      amount: 10 # About 20s of your speech being scrambled

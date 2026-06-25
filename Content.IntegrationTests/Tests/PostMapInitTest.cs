@@ -72,7 +72,9 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] DoNotMapWhitelist =
         {
             "/Maps/centcomm.yml",
-            "/Maps/Shuttles/AdminSpawn/**" // admin gaming
+            "/Maps/Shuttles/AdminSpawn/**", // admin gaming
+            "/Maps/saltern.yml", // funkystation map cleanup - load bearing!
+            "/Maps/bagel.yml" // funkystation map cleanup - load bearing!
         };
 
         /// <summary>
@@ -86,22 +88,12 @@ namespace Content.IntegrationTests.Tests
         {
             "Dev",
             "TestTeg",
-            "Fland",
-            "Packed",
             "Bagel",
             "CentComm",
-            "Box",
-            "Marathon",
             "MeteorArena",
             "Saltern",
-            "Reach",
-            "Oasis",
-            "Plasma",
-            "Elkridge",
-            "Relic",
             "dm01-entryway",
-            "Exo",
-            "Snowball",
+
         };
 
         private static readonly ProtoId<EntityCategoryPrototype> DoNotMapCategory = "DoNotMap";

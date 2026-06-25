@@ -23,17 +23,6 @@ public sealed class StationPowerTests
     private static readonly string[] GameMaps =
     [
         "Bagel",
-        "Box",
-        "Elkridge",
-        "Fland",
-        "Marathon",
-        "Oasis",
-        "Packed",
-        "Plasma",
-        "Relic",
-        "Snowball",
-        "Reach",
-        "Exo",
     ];
 
     [Explicit]

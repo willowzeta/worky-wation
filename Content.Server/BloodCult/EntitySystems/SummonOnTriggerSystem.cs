@@ -361,7 +361,7 @@ public sealed partial class SummonOnTriggerSystem : EntitySystem
 
 			// Delete the rune immediately - this frees the snapgrid cell for the pylon
 			// Use EntityManager.DeleteEntity for immediate deletion
-			EntityManager.DeleteEntity(uid);
+			Del(uid);
 
 			// Now spawn the pylon normally - it will auto-anchor since CultPylon has anchored: true
 			// The rune is already deleted so there's no conflict

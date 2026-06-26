@@ -1,3 +1,4 @@
+#nullable enable
 using System.Numerics;
 using Content.Client.Construction;
 using Content.Client.Examine;

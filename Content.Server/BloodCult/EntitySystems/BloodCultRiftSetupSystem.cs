@@ -182,7 +182,7 @@ public sealed partial class BloodCultRiftSetupSystem : EntitySystem
 		gridUid = EntityUid.Invalid;
 		grid = default!;
 
-		if (EntityManager.TryGetComponent<MapGridComponent>(coords.EntityId, out var directGrid) && directGrid != null)
+		if (TryComp<MapGridComponent>(coords.EntityId, out var directGrid) && directGrid != null)
 		{
 			gridUid = coords.EntityId;
 			grid = directGrid;
@@ -193,7 +193,7 @@ public sealed partial class BloodCultRiftSetupSystem : EntitySystem
 		if (resolvedGrid is not { } gridEntity)
 			return false;
 
-		if (!EntityManager.TryGetComponent<MapGridComponent>(gridEntity, out var resolvedComp) || resolvedComp == null)
+		if (!TryComp<MapGridComponent>(gridEntity, out var resolvedComp) || resolvedComp == null)
 			return false;
 
 		gridUid = gridEntity;

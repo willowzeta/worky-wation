@@ -44,6 +44,8 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
         private readonly string[] _burntDecals = ["burnt1", "burnt2", "burnt3", "burnt4"];
         private float _puddleDamageMultiplier = 1.0f;
         private readonly List<(EntityUid Uid, ReagentPuddleFireComponent FireComp, PuddleComponent Puddle, TransformComponent Xform)> _activeFires = new();
+        private const string StructuralDamage = "Structural";
+        private const string HeatDamage = "Heat";
 
         public override void Initialize()
         {
@@ -424,8 +426,8 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
                 var standingEntities = new HashSet<EntityUid>();
                 _lookup.GetLocalEntitiesIntersecting(gridUid.Value, tilePos, standingEntities, 0f);
 
-                var structuralProto = _prototypeManager.Index<DamageTypePrototype>("Structural");
-                var heatProto = _prototypeManager.Index<DamageTypePrototype>("Heat");
+                var structuralProto = _prototypeManager.Index<DamageTypePrototype>(StructuralDamage);
+                var heatProto = _prototypeManager.Index<DamageTypePrototype>(HeatDamage);
 
                 var structuralDamage = new DamageSpecifier(structuralProto, 2f * flammability * _puddleDamageMultiplier);
                 var heatDamage = new DamageSpecifier(heatProto, 2f * flammability * _puddleDamageMultiplier);

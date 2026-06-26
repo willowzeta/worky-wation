@@ -28,7 +28,6 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
 
     private Direction _placementDirection = default;
     private bool _useMirrorPrototype = false;
-    public event EventHandler? FlipConstructionPrototype;
 
     public override void Initialize()
     {

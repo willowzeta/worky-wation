@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Generic;
 using Content.IntegrationTests.Fixtures;
 using Robust.Shared.Prototypes;

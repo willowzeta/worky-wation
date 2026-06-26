@@ -1,3 +1,4 @@
+#nullable enable annotations
 using System.Numerics;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Interaction;

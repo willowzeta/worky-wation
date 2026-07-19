@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 273.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/15/2026 20:01:24
-  entityCount: 3155
+  time: 07/14/2026 06:03:48
+  entityCount: 3172
 maps:
 - 23
 grids:
@@ -8020,6 +8020,118 @@ entities:
     - type: Transform
       pos: 96.5,20.5
       parent: 1
+- proto: CargoPalletBuy
+  entities:
+  - uid: 3163
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,7.5
+      parent: 1
+  - uid: 3164
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,9.5
+      parent: 1
+  - uid: 3165
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 30.5,7.5
+      parent: 1
+  - uid: 3166
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,8.5
+      parent: 1
+  - uid: 3167
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 30.5,9.5
+      parent: 1
+  - uid: 3168
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 29.5,7.5
+      parent: 1
+  - uid: 3169
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 30.5,8.5
+      parent: 1
+  - uid: 3170
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 29.5,9.5
+      parent: 1
+  - uid: 3171
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 29.5,8.5
+      parent: 1
+- proto: CargoPalletSell
+  entities:
+  - uid: 1045
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 35.5,9.5
+      parent: 1
+  - uid: 1125
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 35.5,8.5
+      parent: 1
+  - uid: 1126
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 35.5,7.5
+      parent: 1
+  - uid: 2165
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 36.5,9.5
+      parent: 1
+  - uid: 2166
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 36.5,8.5
+      parent: 1
+  - uid: 3159
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 36.5,7.5
+      parent: 1
+  - uid: 3160
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 37.5,9.5
+      parent: 1
+  - uid: 3161
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 37.5,8.5
+      parent: 1
+  - uid: 3162
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 37.5,7.5
+      parent: 1
 - proto: CartridgeRocket
   entities:
   - uid: 2127
@@ -9096,6 +9208,11 @@ entities:
     - type: Transform
       pos: 47.5,55.5
       parent: 1
+  - uid: 3172
+    components:
+    - type: Transform
+      pos: 33.5,12.5
+      parent: 1
 - proto: ComputerCloningConsole
   entities:
   - uid: 1183
@@ -9176,6 +9293,12 @@ entities:
       parent: 1
 - proto: ComputerPalletConsole
   entities:
+  - uid: 994
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 33.5,8.5
+      parent: 1
   - uid: 2618
     components:
     - type: Transform
@@ -9426,7 +9549,7 @@ entities:
           - 997
           - 996
           - 995
-          - 994
+          - invalid
           - 993
           - 992
           - 991
@@ -10245,15 +10368,6 @@ entities:
 - proto: FoodMeatRat
   entities:
   - uid: 993
-    components:
-    - type: Transform
-      parent: 988
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: FoodMeatSnail
-  entities:
-  - uid: 994
     components:
     - type: Transform
       parent: 988
@@ -12520,6 +12634,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 37.504547,15.171228
+      parent: 1
+- proto: Nightstick
+  entities:
+  - uid: 2683
+    components:
+    - type: Transform
+      pos: 70.5,40.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -15692,13 +15813,6 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: Stunbaton
-  entities:
-  - uid: 2683
-    components:
-    - type: Transform
-      pos: 70.5,40.5
-      parent: 1
 - proto: SubstationBasic
   entities:
   - uid: 3125
@@ -20304,13 +20418,6 @@ entities:
     - type: Transform
       pos: 67.5,39
       parent: 1
-- proto: WeaponDisabler
-  entities:
-  - uid: 2166
-    components:
-    - type: Transform
-      pos: 67.5,40
-      parent: 1
 - proto: WeaponDisablerSMG
   entities:
   - uid: 2167
@@ -20429,13 +20536,6 @@ entities:
     components:
     - type: Transform
       pos: 73.5,37.5
-      parent: 1
-- proto: WeaponTaser
-  entities:
-  - uid: 2165
-    components:
-    - type: Transform
-      pos: 73.5,39
       parent: 1
 - proto: WelderExperimental
   entities:

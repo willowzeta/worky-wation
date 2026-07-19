@@ -7,6 +7,7 @@
   footstepSounds:
     collection: FootstepPlating
   baseTurf: Lattice
+  weather: true
   baseWhitelist:
     - TrainLattice
 

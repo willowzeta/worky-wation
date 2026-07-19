@@ -1,0 +1,23 @@
+- type: entity
+  id: PlanetCargoPadBuy
+  parent: CargoTelepad
+  name: cargo importing machine
+  suffix: Planet
+  description: "A machine that imports cargo. Use your imagination."
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Funkystation/Structures/Machines/planet_cargo.rsi
+      state: in
+
+- type: entity
+  id: PlanetCargoPadSell
+  parent: BaseMachinePowered
+  name: cargo exporting machine
+  suffix: Planet
+  description: "A machine that exports cargo. Use your imagination."
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Funkystation/Structures/Machines/planet_cargo.rsi
+      state: out

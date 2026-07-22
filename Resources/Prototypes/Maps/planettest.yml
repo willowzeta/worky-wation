@@ -1,0 +1,21 @@
+- type: gameMap
+  id: PlanetTest
+  mapName: "Planet Test"
+  mapPath: /Maps/Test/planettest.yml
+  minPlayers: 0
+  isPlanetMap: true
+  stations:
+    PlanetTest:
+      stationProto: StandardNanotrasenStationPlanet
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Test Planet'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationEmergencyShuttle
+        emergencyShuttlePath: /Maps/Shuttles/emergency_plasma.yml
+      - type: StationJobs
+        availableJobs:
+          Passenger: [ -1, -1 ]
+

@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Diagnostics;
+using Content.Shared.Parallax.Biomes;
 using Content.Shared.Station;
 
 namespace Content.Shared.Maps;
@@ -28,6 +29,18 @@ public sealed partial class GameMapPrototype : IPrototype
     /// Turns out some of the map files are actually secretly grids. Excellent. I love map loading code.
     /// </summary>
     [DataField] public bool IsGrid;
+
+    /// <summary>
+    /// funkystation - If the map requires a planet, set to true
+    /// </summary>
+    [DataField]
+    public bool IsPlanetMap;
+
+    /// <summary>
+    /// funkystation - If the map requires a planet, sets the biome type to load
+    /// </summary>
+    [DataField]
+    public string PlanetBiome = "Grasslands";
 
     [DataField]
     public bool RandomRotation = true;

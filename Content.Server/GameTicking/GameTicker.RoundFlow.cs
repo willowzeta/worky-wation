@@ -4,12 +4,14 @@ using Content.Server.Announcements;
 using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
 using Content.Server.Maps;
+using Content.Server.Parallax;
 using Content.Server.Roles;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
+using Content.Shared.Parallax.Biomes;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
 using Content.Shared.Roles.Components;
@@ -22,6 +24,7 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -32,6 +35,9 @@ namespace Content.Server.GameTicking
         [Dependency] private DiscordWebhook _discord = default!;
         [Dependency] private RoleSystem _role = default!;
         [Dependency] private ITaskManager _taskManager = default!;
+
+        // funkystation - planetmap support
+        [Dependency] private BiomeSystem _biomeSystem = default!;
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -213,6 +219,14 @@ namespace Content.Server.GameTicking
                 return g;
             }
 
+            // funkystation - planetmap support
+            if (ev.GameMap.IsPlanetMap)
+            {
+                ev.Offset = new Vector2(0.5f, 0.5f);
+                ev.Rotation = Angle.Zero;
+            }
+            //end funkystation
+
             if (!_loader.TryLoadMap(ev.GameMap.MapPath,
                     out var map,
                     out var grids,
@@ -222,6 +236,18 @@ namespace Content.Server.GameTicking
             {
                 throw new Exception($"Failed to load game map {ev.GameMap.ID}");
             }
+
+            // funkystation - planetmap support
+            if (!_prototypeManager.TryIndex<BiomeTemplatePrototype>(ev.GameMap.PlanetBiome, out var biomeTemplate))
+            {
+                throw new Exception($"Failed to initialize {ev.GameMap.ID} onto planet");
+            }
+
+            if (ev.GameMap.IsPlanetMap)
+            {
+                _biomeSystem.EnsurePlanet(map.Value.Owner, biomeTemplate);
+            }
+            // end funkystation
 
             mapId = map.Value.Comp.MapId;
             _metaData.SetEntityName(map.Value.Owner, proto.MapName);

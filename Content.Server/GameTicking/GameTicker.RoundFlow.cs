@@ -222,7 +222,7 @@ namespace Content.Server.GameTicking
             // funkystation - planetmap support
             if (ev.GameMap.IsPlanetMap)
             {
-                ev.Offset = new Vector2(0.5f, 0.5f);
+                ev.Offset = new Vector2(0f, 0.5f);
                 ev.Rotation = Angle.Zero;
             }
             //end funkystation

@@ -1,0 +1,57 @@
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  id: ClothingOuterHardsuitPrisonerMining
+  name: prisoner's mining hardsuit
+  description: A cheap, easily repaired hardsuit with a bomb embedded in it. It's better than suffocating...
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Clothing/OuterClothing/Hardsuits/spatio.rsi
+  - type: Clothing
+    sprite: _Funkystation/Clothing/OuterClothing/Hardsuits/spatio.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.7
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Radiation: 0.3
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSpatio
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - HardsuitSpatio
+  - type: SuitBreachable
+    breachChance: 0.35
+    minDamageToRoll: 12.0
+  - type: TimerTrigger
+    keysIn:
+    - trigger
+    delay: 5
+    initialBeepDelay: 0
+    beepSound: /Audio/Machines/Nuke/general_beep.ogg
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: Explosive
+    explosionType: TransparentMinibomb
+    totalIntensity: 200
+    intensitySlope: 30
+    maxIntensity: 60
+    canCreateVacuum: false
+  - type: ExplosionEffect
+  - type: TriggerOnSignal
+  - type: TriggerOnDidUnequip
+    slotFlags: 5

@@ -1,0 +1,27 @@
+- type: entity
+  parent: BaseMachinePowered
+  id: Resonator
+  name: bluespace resonator
+  components:
+  - type: AtmosDevice
+    joinSystem: true
+    requireAnchored: true
+  - type: Sprite
+    sprite: _Funkystation/Structures/Piping/Atmospherics/thermomachine.rsi
+    layers:
+      - state: freezerOff
+      - state: pipe
+  - type: NodeContainer
+    nodes:
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: GasCanister
+    air:
+      volume: 10000
+      maxIntegrity: 15
+      integrity: 15
+      maxReleasePressure: 1013.25
+      safetyPressure: 10132.5
+      overpressure: 20265

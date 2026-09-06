@@ -17,11 +17,4 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: South
-  - type: GasCanister
-    air:
-      volume: 10000
-      maxIntegrity: 15
-      integrity: 15
-      maxReleasePressure: 1013.25
-      safetyPressure: 10132.5
-      overpressure: 20265
+

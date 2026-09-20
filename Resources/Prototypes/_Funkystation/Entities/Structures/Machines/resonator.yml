@@ -17,4 +17,5 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: South
+        volume: 5000
 

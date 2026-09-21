@@ -13,9 +13,13 @@
       - state: pipe
   - type: NodeContainer
     nodes:
-      pipe:
+      Fuel:
         !type:PipeNode
         nodeGroupID: Pipe
-        pipeDirection: South
-        volume: 5000
-
+        pipeDirection: West
+        volume: 1000
+      Catalyst:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: East
+        volume: 1000

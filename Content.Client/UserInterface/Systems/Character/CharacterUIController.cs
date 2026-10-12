@@ -21,6 +21,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Content.Client.CharacterInfo.CharacterInfoSystem;
 using static Robust.Client.UserInterface.Controls.BaseButton;
+using Content.Shared._Funkystation.CCVar; // funky - cue cards
+using Robust.Shared.Configuration; // funky - cue cards
 
 namespace Content.Client.UserInterface.Systems.Character;
 
@@ -33,6 +35,8 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
 
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
+
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {
@@ -141,46 +145,48 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         _window.Objectives.RemoveAllChildren();
         _window.ObjectivesLabel.Visible = objectives.Any();
 
-        foreach (var (groupId, conditions) in objectives)
+        if (!_cfg.GetCVar(CueCardCVars.CueCardsEnabled)) // funky - cue cards
         {
-            var objectiveControl = new CharacterObjectiveControl
+            foreach (var (groupId, conditions) in objectives)
             {
-                Orientation = BoxContainer.LayoutOrientation.Vertical,
-                Modulate = Color.Gray
-            };
+                var objectiveControl = new CharacterObjectiveControl
+                {
+                    Orientation = BoxContainer.LayoutOrientation.Vertical,
+                    Modulate = Color.Gray
+                };
 
+                var objectiveText = new FormattedMessage();
+                objectiveText.TryAddMarkup(groupId, out _);
 
-            var objectiveText = new FormattedMessage();
-            objectiveText.TryAddMarkup(groupId, out _);
+                var objectiveLabel = new RichTextLabel
+                {
+                    StyleClasses = { StyleClass.TooltipTitle }
+                };
+                objectiveLabel.SetMessage(objectiveText);
 
-            var objectiveLabel = new RichTextLabel
-            {
-                StyleClasses = { StyleClass.TooltipTitle }
-            };
-            objectiveLabel.SetMessage(objectiveText);
+                objectiveControl.AddChild(objectiveLabel);
 
-            objectiveControl.AddChild(objectiveLabel);
+                foreach (var condition in conditions)
+                {
+                    var conditionControl = new ObjectiveConditionsControl();
+                    conditionControl.ProgressTexture.Texture = _sprite.Frame0(condition.Icon);
+                    conditionControl.ProgressTexture.Progress = condition.Progress;
+                    var titleMessage = new FormattedMessage();
+                    var descriptionMessage = new FormattedMessage();
+                    titleMessage.AddText(condition.Title);
+                    descriptionMessage.AddText(condition.Description);
 
-            foreach (var condition in conditions)
-            {
-                var conditionControl = new ObjectiveConditionsControl();
-                conditionControl.ProgressTexture.Texture = _sprite.Frame0(condition.Icon);
-                conditionControl.ProgressTexture.Progress = condition.Progress;
-                var titleMessage = new FormattedMessage();
-                var descriptionMessage = new FormattedMessage();
-                titleMessage.AddText(condition.Title);
-                descriptionMessage.AddText(condition.Description);
+                    conditionControl.Title.SetMessage(titleMessage);
+                    conditionControl.Description.SetMessage(descriptionMessage);
 
-                conditionControl.Title.SetMessage(titleMessage);
-                conditionControl.Description.SetMessage(descriptionMessage);
+                    objectiveControl.AddChild(conditionControl);
+                }
 
-                objectiveControl.AddChild(conditionControl);
+                _window.Objectives.AddChild(objectiveControl);
             }
-
-            _window.Objectives.AddChild(objectiveControl);
         }
 
-        if (briefing != null)
+        if (briefing != null && !_cfg.GetCVar(CueCardCVars.CueCardsEnabled)) // funky - cue cards
         {
             var briefingControl = new ObjectiveBriefingControl();
             var text = new FormattedMessage();
@@ -219,8 +225,13 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         if (!_prototypeManager.TryIndex(mind.RoleType, out var proto))
             Log.Error($"Player '{_player.LocalSession}' has invalid Role Type '{mind.RoleType}'. Displaying default instead");
 
-        _window.RoleType.Text = Loc.GetString(proto?.Name ?? "role-type-crew-aligned-name");
-        _window.RoleType.FontColorOverride = proto?.Color ?? Color.White;
+        if (!_cfg.GetCVar(CueCardCVars.CueCardsEnabled)) // funky - cue cards
+        {
+            _window.RoleType.Text = Loc.GetString(proto?.Name ?? "role-type-crew-aligned-name");
+            _window.RoleType.FontColorOverride = proto?.Color ?? Color.White;
+        }
+
+
     }
 
     private void CharacterDetached(EntityUid uid)
